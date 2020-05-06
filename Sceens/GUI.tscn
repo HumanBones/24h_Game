@@ -1,0 +1,321 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://Sprites/heart_ui.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/beer_ui.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Toilat_ui.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/GUI.gd" type="Script" id=4]
+[ext_resource path="res://Sprites/beers_txt.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/kills_txt.png" type="Texture" id=6]
+[ext_resource path="res://Fonts/novem___.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Sprites/dead_txt.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/button_replay.png" type="Texture" id=9]
+[ext_resource path="res://Music/ThisGameIsOver.wav" type="AudioStream" id=10]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.854902, 0.0980392, 0.0980392, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.184314, 0.0392157, 0.0392157, 1 )
+
+[sub_resource type="Animation" id=8]
+resource_name = "Hp_low"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:custom_styles/fg:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.854902, 0.0980392, 0.0980392, 1 ), Color( 1, 1, 1, 1 ), Color( 0.854902, 0.0980392, 0.0980392, 1 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "Idle"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:custom_styles/fg:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.854902, 0.0980392, 0.0980392, 1 ), Color( 0.854902, 0.0980392, 0.0980392, 1 ) ]
+}
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.917647, 0.823529, 0.164706, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.309804, 0.231373, 0.054902, 1 )
+
+[sub_resource type="Animation" id=11]
+resource_name = "Idle"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:custom_styles/fg:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.917647, 0.823529, 0.164706, 1 ), Color( 0.917647, 0.823529, 0.164706, 1 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "Pee_full"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:custom_styles/fg:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.917647, 0.823529, 0.164706, 1 ), Color( 1, 0.0196078, 0.0196078, 1 ), Color( 0.917647, 0.823529, 0.164706, 1 ) ]
+}
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.898039, 0.498039, 0.101961, 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.372549, 0.203922, 0.0666667, 1 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "Beer_low"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:custom_styles/fg:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.898039, 0.498039, 0.101961, 1 ), Color( 1, 1, 1, 1 ), Color( 0.898039, 0.498039, 0.101961, 1 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "Idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:custom_styles/fg:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.898039, 0.498039, 0.101961, 1 ), Color( 0.898039, 0.498039, 0.101961, 1 ) ]
+}
+
+[sub_resource type="DynamicFont" id=13]
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=14]
+font_data = ExtResource( 7 )
+
+[sub_resource type="Animation" id=15]
+resource_name = "dead"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 0.258816, 0.784583, 0.0669858, 0.0915054 ),
+"update": 0,
+"values": [ Vector2( 1.5, 1.5 ), Vector2( 2, 2 ), Vector2( 1, 1 ), Vector2( 1.5, 1.5 ) ]
+}
+
+[node name="GUI" type="Control" groups=[
+"Gui",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -0.377357
+margin_bottom = -0.37735
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Health" type="ProgressBar" parent="CanvasLayer"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = -15.3773
+margin_right = 101.0
+margin_bottom = -1.37735
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+value = 50.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Health_texture" type="TextureRect" parent="CanvasLayer/Health"]
+margin_top = -1.59723
+margin_right = 16.0
+margin_bottom = 14.4028
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Health"]
+anims/Hp_low = SubResource( 8 )
+anims/Idle = SubResource( 10 )
+
+[node name="Pee" type="ProgressBar" parent="CanvasLayer"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -69.0
+margin_top = -15.3773
+margin_right = -2.0
+margin_bottom = -1.37735
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
+value = 50.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pee_texture" type="TextureRect" parent="CanvasLayer/Pee"]
+margin_top = -1.13086
+margin_right = 16.0
+margin_bottom = 14.8691
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Pee"]
+anims/Idle = SubResource( 11 )
+anims/Pee_full = SubResource( 9 )
+
+[node name="Beer" type="ProgressBar" parent="CanvasLayer"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -69.0
+margin_top = -30.1309
+margin_right = -2.0
+margin_bottom = -16.1309
+custom_styles/fg = SubResource( 5 )
+custom_styles/bg = SubResource( 6 )
+value = 50.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Beer"]
+anims/Beer_low = SubResource( 7 )
+anims/Idle = SubResource( 12 )
+
+[node name="Beer_texture" type="TextureRect" parent="CanvasLayer/Beer"]
+margin_top = -1.22937
+margin_right = 16.0
+margin_bottom = 14.7706
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Beer_texture" type="TextureRect" parent="CanvasLayer"]
+margin_top = -0.377357
+margin_right = 48.0
+margin_bottom = 15.6226
+texture = ExtResource( 5 )
+
+[node name="Kills_texture" type="TextureRect" parent="CanvasLayer"]
+margin_left = 208.0
+margin_top = -0.377357
+margin_right = 256.0
+margin_bottom = 15.6226
+texture = ExtResource( 6 )
+
+[node name="Beer_label" type="Label" parent="CanvasLayer"]
+margin_top = 16.0
+margin_right = 40.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 13 )
+text = "0"
+
+[node name="Kills_label" type="Label" parent="CanvasLayer"]
+margin_left = 208.0
+margin_top = 16.0
+margin_right = 248.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 14 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Dead" type="TextureRect" parent="CanvasLayer"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -31.0
+margin_right = 32.0
+margin_bottom = -15.0
+rect_scale = Vector2( 1.96565, 1.96565 )
+rect_pivot_offset = Vector2( 34.714, 7.27028 )
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Dead"]
+anims/dead = SubResource( 15 )
+
+[node name="Play_again" type="TextureButton" parent="CanvasLayer"]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -32.0
+margin_top = -98.3774
+margin_right = 32.0
+margin_bottom = -34.3773
+texture_normal = ExtResource( 9 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -5.0
+[connection signal="pressed" from="CanvasLayer/Play_again" to="." method="_on_Play_again_pressed"]
