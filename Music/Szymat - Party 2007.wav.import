@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Szymat - Party 2007.wav-751f65e37dcd8cfe6f81f0d7cea63c65.sample"
+
+[deps]
+
+source_file="res://Music/Szymat - Party 2007.wav"
+dest_files=[ "res://.import/Szymat - Party 2007.wav-751f65e37dcd8cfe6f81f0d7cea63c65.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
