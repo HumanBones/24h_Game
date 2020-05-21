@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Sprites/button_play.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Main_menu.gd" type="Script" id=2]
@@ -40,27 +40,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 64, 32 ), Vector2( 64, 32 ) ]
 }
-
-[sub_resource type="AnimationNodeAnimation" id=3]
-animation = "Controls"
-
-[sub_resource type="AnimationNodeAnimation" id=4]
-animation = "normal_cont"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=5]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=6]
-
-[sub_resource type="AnimationNodeStateMachine" id=7]
-states/Controls/node = SubResource( 3 )
-states/Controls/position = Vector2( 222, 85 )
-states/normal_cont/node = SubResource( 4 )
-states/normal_cont/position = Vector2( 423, 85 )
-transitions = [ "Controls", "normal_cont", SubResource( 5 ), "normal_cont", "Controls", SubResource( 6 ) ]
-start_node = "normal_cont"
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
 
 [node name="Main_menu" type="Control"]
 anchor_right = 1.0
@@ -122,9 +101,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -64.0
-margin_top = -43.0
+margin_top = 92.0
 margin_right = 64.0
-margin_bottom = 37.0001
+margin_bottom = 172.0
 texture = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -133,12 +112,6 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Controls = SubResource( 1 )
 anims/normal_cont = SubResource( 2 )
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 7 )
-anim_player = NodePath("../AnimationPlayer")
-active = true
-parameters/playback = SubResource( 8 )
 [connection signal="pressed" from="Start_button" to="." method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="Info_button" to="." method="_on_Info_button_pressed"]
 [connection signal="pressed" from="Sound_button" to="." method="_on_Sound_button_pressed"]

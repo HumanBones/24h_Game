@@ -6,6 +6,9 @@ onready var settings = $"/root/Settings"
 var spawner_scene = preload("res://Sceens/Enemy_spawner.tscn")
 var beer_spawner_scene = preload("res://Sceens/Beer_spawner.tscn")
 
+#onready var animPlayer = $AnimationPlayer
+#var ge = preload("res://SFX/you_are_ge.wav")
+#onready var player_ge = $TextureRect/AudioStreamPlayer2D
 
 func _ready():
 	if !settings.music_muted:
@@ -30,3 +33,10 @@ func _ready():
 	var beer_spawner = beer_spawner_scene.instance()
 	beer_spawner.position = Vector2(view_port.x/2,view_port.y)
 	add_child(beer_spawner)
+
+#func _physics_process(delta):
+	#if Input.is_action_just_pressed("Action"):
+		#player_ge.play()
+		#if !animPlayer.is_playing():
+			#animPlayer.play("Ge")
+		

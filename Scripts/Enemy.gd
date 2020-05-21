@@ -46,6 +46,6 @@ func hit_player(delta):
 		
 		if !hit_done:
 			animState.travel("Hit")
+			player[0].take_dmg(dmg)
+			hit_timer = 0
 			hit_done = true
-		player[0].take_dmg(dmg)
-		hit_timer = 0

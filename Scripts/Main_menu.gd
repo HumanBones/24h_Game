@@ -6,8 +6,9 @@ onready var info_button = $Info_button
 onready var audio = $Menu_audio
 onready var controls = $Controls
 
-onready var animTree = $AnimationTree
-onready var animState = animTree.get("parameters/playback")
+#onready var animTree = $AnimationTree
+#onready var animState = animTree.get("parameters/playback")
+onready var animPlayer = $AnimationPlayer
 
 func _physics_process(delta):
 	if settings.music_muted:
@@ -35,7 +36,7 @@ func _on_Sound_button_pressed():
 func _on_Info_button_pressed():
 	if !controls.visible:
 		controls.visible = true
-		animState.travel("Controls")
+		if !animPlayer.is_playing():
+			animPlayer.play("Controls")
 	else:
 		controls.visible = false
-		animState.travel("normal_cont")

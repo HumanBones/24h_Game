@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://Sprites/wacko_player-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
@@ -11,9 +11,23 @@ extents = Vector2( 10, 12 )
 radius = 26.0
 
 [sub_resource type="Animation" id=3]
-resource_name = "Hit_left"
+resource_name = "Got_hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Player_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 20, 21 ]
+}
+
+[sub_resource type="Animation" id=4]
 length = 0.4
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Player_sprite:frame")
 tracks/0/interp = 1
@@ -26,11 +40,23 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 5, 6, 7, 4 ]
 }
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "A" ],
+"method": "kill_enemy"
+} ]
+}
 
-[sub_resource type="Animation" id=4]
-resource_name = "Hit_right"
+[sub_resource type="Animation" id=5]
 length = 0.4
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Player_sprite:frame")
 tracks/0/interp = 1
@@ -43,11 +69,23 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 1, 2, 3, 0 ]
 }
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "D" ],
+"method": "kill_enemy"
+} ]
+}
 
-[sub_resource type="Animation" id=5]
-resource_name = "Hit_up"
+[sub_resource type="Animation" id=6]
 length = 0.4
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Player_sprite:frame")
 tracks/0/interp = 1
@@ -58,11 +96,24 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 13, 14, 15, 12 ]
+"values": [ 15, 12, 13, 14 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "W" ],
+"method": "kill_enemy"
+} ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "Idle"
+[sub_resource type="Animation" id=7]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -78,10 +129,8 @@ tracks/0/keys = {
 "values": [ 17, 18, 19, 16 ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "Take_beer"
+[sub_resource type="Animation" id=8]
 length = 0.4
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Player_sprite:frame")
 tracks/0/interp = 1
@@ -94,25 +143,38 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 9, 10, 11, 8 ]
 }
-
-[sub_resource type="AnimationNodeAnimation" id=8]
-animation = "Hit_left"
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "beer" ],
+"method": "drink_beer"
+} ]
+}
 
 [sub_resource type="AnimationNodeAnimation" id=9]
-animation = "Hit_right"
+animation = "Got_hit"
 
 [sub_resource type="AnimationNodeAnimation" id=10]
-animation = "Hit_up"
+animation = "Hit_left"
 
 [sub_resource type="AnimationNodeAnimation" id=11]
-animation = "Idle"
+animation = "Hit_right"
 
 [sub_resource type="AnimationNodeAnimation" id=12]
+animation = "Hit_up"
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=14]
 animation = "Take_beer"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=13]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=14]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=15]
 
@@ -145,26 +207,65 @@ animation = "Take_beer"
 [sub_resource type="AnimationNodeStateMachineTransition" id=29]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=30]
+switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=31]
+switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=32]
+switch_mode = 2
+auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachine" id=33]
-states/Hit_left/node = SubResource( 8 )
-states/Hit_left/position = Vector2( 221, 53 )
-states/Hit_right/node = SubResource( 9 )
-states/Hit_right/position = Vector2( 544, 43 )
-states/Hit_up/node = SubResource( 10 )
-states/Hit_up/position = Vector2( 231, 159 )
-states/Idle/node = SubResource( 11 )
-states/Idle/position = Vector2( 393, 113 )
-states/Take_beer/node = SubResource( 12 )
-states/Take_beer/position = Vector2( 544, 193 )
-transitions = [ "Hit_left", "Hit_right", SubResource( 13 ), "Hit_right", "Hit_left", SubResource( 14 ), "Hit_right", "Take_beer", SubResource( 15 ), "Take_beer", "Hit_right", SubResource( 16 ), "Take_beer", "Hit_left", SubResource( 17 ), "Hit_left", "Take_beer", SubResource( 18 ), "Hit_up", "Hit_left", SubResource( 19 ), "Hit_up", "Take_beer", SubResource( 20 ), "Hit_up", "Hit_right", SubResource( 21 ), "Hit_right", "Hit_up", SubResource( 22 ), "Hit_left", "Hit_up", SubResource( 23 ), "Take_beer", "Hit_up", SubResource( 24 ), "Idle", "Hit_right", SubResource( 25 ), "Idle", "Take_beer", SubResource( 26 ), "Idle", "Hit_up", SubResource( 27 ), "Idle", "Hit_left", SubResource( 28 ), "Hit_left", "Idle", SubResource( 29 ), "Hit_up", "Idle", SubResource( 30 ), "Take_beer", "Idle", SubResource( 31 ), "Hit_right", "Idle", SubResource( 32 ) ]
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=37]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=38]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=39]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=40]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=41]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=42]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=43]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id=44]
+states/Got_hit/node = SubResource( 9 )
+states/Got_hit/position = Vector2( 734, 253.8 )
+states/Hit_left/node = SubResource( 10 )
+states/Hit_left/position = Vector2( 270, 129 )
+states/Hit_right/node = SubResource( 11 )
+states/Hit_right/position = Vector2( 631, 129 )
+states/Hit_up/node = SubResource( 12 )
+states/Hit_up/position = Vector2( 439, 55 )
+states/Idle/node = SubResource( 13 )
+states/Idle/position = Vector2( 478, 169 )
+states/Take_beer/node = SubResource( 14 )
+states/Take_beer/position = Vector2( 447, 272 )
+transitions = [ "Idle", "Hit_up", SubResource( 15 ), "Idle", "Hit_left", SubResource( 16 ), "Idle", "Hit_right", SubResource( 17 ), "Idle", "Take_beer", SubResource( 18 ), "Hit_left", "Hit_up", SubResource( 19 ), "Hit_up", "Hit_right", SubResource( 20 ), "Take_beer", "Hit_right", SubResource( 21 ), "Take_beer", "Hit_left", SubResource( 22 ), "Hit_right", "Take_beer", SubResource( 23 ), "Hit_left", "Take_beer", SubResource( 24 ), "Hit_up", "Take_beer", SubResource( 25 ), "Hit_left", "Hit_right", SubResource( 26 ), "Hit_right", "Hit_up", SubResource( 27 ), "Hit_up", "Hit_left", SubResource( 28 ), "Take_beer", "Hit_up", SubResource( 29 ), "Hit_left", "Idle", SubResource( 30 ), "Hit_up", "Idle", SubResource( 31 ), "Hit_right", "Idle", SubResource( 32 ), "Take_beer", "Idle", SubResource( 33 ), "Hit_up", "Got_hit", SubResource( 34 ), "Hit_right", "Got_hit", SubResource( 35 ), "Idle", "Got_hit", SubResource( 36 ), "Hit_left", "Got_hit", SubResource( 37 ), "Take_beer", "Got_hit", SubResource( 38 ), "Got_hit", "Take_beer", SubResource( 39 ), "Got_hit", "Hit_right", SubResource( 40 ), "Got_hit", "Idle", SubResource( 41 ), "Got_hit", "Hit_up", SubResource( 42 ), "Got_hit", "Hit_left", SubResource( 43 ) ]
 start_node = "Idle"
+graph_offset = Vector2( 0, 9.50436 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=34]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=45]
 
 [node name="Player" type="KinematicBody2D" groups=[
 "Player",
@@ -173,8 +274,8 @@ script = ExtResource( 2 )
 
 [node name="Player_sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
-hframes = 20
-frame = 19
+hframes = 23
+frame = 18
 
 [node name="Player_collision" type="CollisionShape2D" parent="."]
 position = Vector2( -0.550917, 2.42403 )
@@ -193,14 +294,15 @@ cast_to = Vector2( 0, 30 )
 stream = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Hit_left = SubResource( 3 )
-anims/Hit_right = SubResource( 4 )
-anims/Hit_up = SubResource( 5 )
-anims/Idle = SubResource( 6 )
-anims/Take_beer = SubResource( 7 )
+anims/Got_hit = SubResource( 3 )
+anims/Hit_left = SubResource( 4 )
+anims/Hit_right = SubResource( 5 )
+anims/Hit_up = SubResource( 6 )
+anims/Idle = SubResource( 7 )
+anims/Take_beer = SubResource( 8 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 33 )
+tree_root = SubResource( 44 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 34 )
+parameters/playback = SubResource( 45 )

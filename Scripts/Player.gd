@@ -32,7 +32,7 @@ var pee_timer = 0
 var pee_cooldown = 0.2
 
 var pee_expode_t = 0
-var pee_explode_int = 2
+var pee_explode_int = 5
 
 
 var max_beer = 100
@@ -53,9 +53,6 @@ enum {
 
 
 func _ready():
-	pee = clamp(pee,0,max_pee)
-	beer = clamp(beer,0,max_beer)
-	hp = clamp(hp,0,max_hp)
 	
 	var view_port = get_viewport_rect().size
 	self.position = view_port/2
@@ -67,6 +64,10 @@ func _ready():
 
 
 func _physics_process(delta):
+
+	pee = clamp(pee,0,max_pee)
+	beer = clamp(beer,0,max_beer)
+	hp = clamp(hp,0,max_hp)
 	#print(pee_expode_t)
 	
 	if hp <= 0 :
@@ -153,6 +154,7 @@ func kill_enemy(side):
 
 func drink_beer(side):
 	var collid = ray.get_collider()
+	print(side)
 	if collid && collid.side == side:
 		refilling_beer()
 		beer_count += 1
@@ -164,8 +166,9 @@ func update_ui_text(amount1,amount2):
 	gui[0].update_labels(amount1,amount2)
 
 func take_dmg(amount):
-	#print("got_hit")
+	print("got_hit")
 	if !state == dead:
+		animState.travel("Got_hit")
 		hp -= amount
 		update_gui_hp(hp)
 		
@@ -197,22 +200,23 @@ func refilling_pee():
 func get_input():
 	
 	if Input.is_action_just_pressed("ui_left"):
-		print("left")
-		animState.travel("Hit_left")
+		if ray.rotation_degrees == 90:
+			animState.travel("Hit_left")
 		ray.rotation_degrees = 90
-		kill_enemy("A")
+		#print("left")
 	if Input.is_action_just_pressed("ui_up"):
+		if ray.rotation_degrees == 180:
+			animState.travel("Hit_up")
 		print("up")
-		animState.travel("Hit_up")
 		ray.rotation_degrees = 180
-		kill_enemy("W")
 	if Input.is_action_just_pressed("ui_right"):
+		if ray.rotation_degrees == 270:
+			animState.travel("Hit_right")
 		print("right")
-		animState.travel("Hit_right")
 		ray.rotation_degrees = 270
-		kill_enemy("D")
 	if Input.is_action_just_pressed("ui_down"):
-		print("down")
-		animState.travel("Take_beer")
+		if ray.rotation_degrees == 0:
+			animState.travel("Take_beer")
+			#drink_beer("beer")
 		ray.rotation_degrees = 0
-		drink_beer("beer")
+		print("down")

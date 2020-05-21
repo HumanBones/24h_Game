@@ -4,6 +4,7 @@
 [ext_resource path="res://Sprites/enemy-Sheet.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 14 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Hit"
@@ -39,26 +40,27 @@ tracks/0/keys = {
 "values": [ 8, 9, 10, 11, 7 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "Hit"
 
-[sub_resource type="AnimationNodeAnimation" id=7]
+[sub_resource type="AnimationNodeAnimation" id=5]
 animation = "Walk"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
 switch_mode = 2
+auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachine" id=4]
-states/Hit/node = SubResource( 6 )
+[sub_resource type="AnimationNodeStateMachine" id=8]
+states/Hit/node = SubResource( 4 )
 states/Hit/position = Vector2( 238, 51 )
-states/Walk/node = SubResource( 7 )
+states/Walk/node = SubResource( 5 )
 states/Walk/position = Vector2( 414, 51 )
-transitions = [ "Walk", "Hit", SubResource( 8 ), "Hit", "Walk", SubResource( 9 ) ]
+transitions = [ "Walk", "Hit", SubResource( 6 ), "Hit", "Walk", SubResource( 7 ) ]
 start_node = "Walk"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
 
 [node name="Enemy" type="KinematicBody2D" groups=[
 "Enemy",
@@ -78,7 +80,7 @@ anims/Hit = SubResource( 2 )
 anims/Walk = SubResource( 3 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 4 )
+tree_root = SubResource( 8 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 5 )
+parameters/playback = SubResource( 9 )

@@ -13,6 +13,7 @@ var spawn_timer = 0
 var side
 var ray_rotation = 0
 var enemy_line = 0
+var enemy_spawn_cap = 4
 
 
 func _ready():
@@ -24,6 +25,8 @@ func _physics_process(delta):
 	
 	var enemy_coll = area.get_overlapping_bodies()
 	enemy_line = enemy_coll.size()
+	if side == "W":
+		enemy_spawn_cap = 3
 	
 	
 	randomize()
@@ -32,7 +35,7 @@ func _physics_process(delta):
 	spawn_timer += delta
 	
 	if spawn_timer >= spawn_interaval:
-		if enemy_line <= 4:
+		if enemy_line <= enemy_spawn_cap:
 			spawn_enemy()
 			spawn_timer = 0
 
